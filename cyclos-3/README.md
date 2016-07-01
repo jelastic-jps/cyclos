@@ -1,4 +1,4 @@
-[![Cyclos 3](images/cyclos.png)](../cyclos-3)
+[![Cyclos 3](../images/cyclos.png)](../cyclos-3)
 ##  Cyclos 3
 
 The JPS package deploys Cyclos 3 that initially contains 1 application server and 1 database container.
