@@ -5,7 +5,7 @@
 		"id": "cyclos",
 		"name": "Cyclos3 CE",
 		"version": "3.7.3",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/images/cyclos.png",
+		"logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
 		"type": "java",
 		"homepage": "http://project.cyclos.org/",
 		"description": {
@@ -34,7 +34,7 @@
 				]
 			},
 			"deployments": [{
-					"archive": "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/cyclos-3/dumps/cyclos-3.7.3.war",
+					"archive": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-3/dumps/cyclos-3.7.3.war",
 					"name": "cyclos-3.7.3.war",
 					"context": "ROOT"
 				}
@@ -44,7 +44,7 @@
 					"database": {
 						"name": "cyclos3",
 						"user": "cyclos",
-						"dump": "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/cyclos-3/dumps/cyclos.sql"
+						"dump": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-3/dumps/cyclos.sql"
 					}
 				}, {
 					"nodeType": "tomcat6",

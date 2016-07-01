@@ -2,7 +2,7 @@
 	"jpsVersion": "0.3",
 	"jpsType": "install",
 	"application": {
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/images/cyclos.png",
+		"logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
 		"description": {
 			"en": "Cyclos 4 PRO is our payment platform for large businesses and organisations. It is secure and reliable JAVA software that can be installed on your server. Both application server as the database server are fully clusterable. It offers mobile banking (Mobile app, SMS, USSD*, and IVR*), online banking and much more."
 		},
@@ -44,7 +44,7 @@
 						"deploy": [{
 								"name": "cyclos4.5.war",
 								"context": "ROOT",
-								"archive": "https://raw.githubusercontent.com/jelastic-jps/cyclos-4/master/dumps/cyclos.zip"
+								"archive": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-4/dumps/cyclos.zip"
 							}
 						]
 					}
@@ -55,7 +55,7 @@
 						"executeShellCommands": [{
 								"nodeType": "postgres9",
 								"commands": [
-										"curl -sSf \"https://raw.githubusercontent.com/jelastic-jps/cyclos-4/master/scripts/install.sh\" -o ${SERVER_SCRIPTS}/install.sh 2>&1",
+										"curl -sSf \"https://github.com/jelastic-jps/cyclos/raw/master/cyclos-4/scripts/install.sh\" -o ${SERVER_SCRIPTS}/install.sh 2>&1",
 										"/bin/bash ${SERVER_SCRIPTS}/install.sh \"cyclos\" \"cyclos4\" \"${user.appPassword}\" 2>&1"
 								]
 							}

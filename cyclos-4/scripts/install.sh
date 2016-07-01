@@ -3,7 +3,7 @@
 _USER="$1"
 _DBNAME="$2"
 _PASSWORD="$3"
-_DUMP_URL="https://raw.githubusercontent.com/jelastic-jps/cyclos-4/master/dumps/dump.sql"
+_DUMP_URL="https://github.com/jelastic-jps/cyclos/raw/master/cyclos-4/dumps/dump.sql"
 _HOME_DIRECTORY="/var/lib/jelastic/bin/"
 
 wget=`which wget`
