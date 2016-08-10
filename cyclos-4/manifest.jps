@@ -42,7 +42,7 @@
 				"id": "deployment",
 				"onCall": [{
 						"deploy": [{
-								"name": "cyclos4.5.war",
+								"name": "cyclos4.war",
 								"context": "ROOT",
 								"archive": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-4/dumps/cyclos.zip"
 							}
@@ -56,7 +56,7 @@
 								"nodeType": "postgres9",
 								"commands": [
 										"curl -sSf \"https://github.com/jelastic-jps/cyclos/raw/master/cyclos-4/scripts/install.sh\" -o ${SERVER_SCRIPTS}/install.sh 2>&1",
-										"/bin/bash ${SERVER_SCRIPTS}/install.sh \"cyclos\" \"cyclos4\" \"${user.appPassword}\" 2>&1"
+										"/bin/bash ${SERVER_SCRIPTS}/install.sh \"cyclos\" \"cyclos4\" \"${user.appPassword}\" 2>>${SERVER_SCRIPTS}/install.log 1>>${SERVER_SCRIPTS}/install.log"
 								]
 							}
 						]
