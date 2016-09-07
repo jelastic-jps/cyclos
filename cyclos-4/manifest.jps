@@ -21,7 +21,7 @@
 		},
 		"env": {
 			"topology": {
-				"engine": "java7",
+				"engine": "java8",
 				"nodes": [{
 						"cloudlets": 16,
 						"nodeType": "tomcat7"
