@@ -18,7 +18,7 @@
 		"env": {
 			"topology": {
 				"ha": false,
-				"engine": "java6",
+				"engine": "java8",
 				"ssl": false,
 				"nodes": [{
 						"extip": false,
