@@ -12,7 +12,7 @@ sed=`which sed`
 
 cd ${_HOME_DIRECTORY}
 
-PGPASSWORD=$(cat /var/log/jem.log  | grep passwd | tail -n 1 | awk -F "-p " '{ print $2}');
+PGPASSWORD=$4;
 export PGPASSWORD;
 
 $psql postgres webadmin << EOF
