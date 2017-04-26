@@ -10,7 +10,7 @@ Cyclos is also used by many organizations and communities to provide community c
 
 ### Environment Topology
 
-![Cyclos 3 Topology](https://docs.google.com/drawings/d/1pUDhd7wbFVqtHCDIxB-ZRsA3-23Ad1StSlW5I19w-94/pub?w=505&h=216)
+![cyclos-3-environment-topology](images/cyclos-3-environment-topology.png)
 
 ### Specifics
 
