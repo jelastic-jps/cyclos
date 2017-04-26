@@ -10,7 +10,7 @@ Cyclos is used by local banks, C3 networks, MFI's, barters, community currencies
 
 ### Environment Topology
 
-![Cyclos 4 Topology](https://docs.google.com/drawings/d/1y_9OrXUGu3IssIkZ7oYwEkOj2D75K1lRNjri4NYpVEA/pub?w=505&h=216)
+![cycloc-4-environment-topology](../images/cycloc-4-environment-topology.png)
 
 ### Specifics
 
