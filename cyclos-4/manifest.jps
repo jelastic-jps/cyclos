@@ -25,11 +25,11 @@
         "engine": "java8",
         "nodes": [
           {
-            "cloudlets": 16,
+            "cloudlets": 8,
             "nodeType": "tomcat7"
           },
           {
-            "cloudlets": 16,
+            "cloudlets": 8,
             "nodeType": "postgres9"
           }
         ]
