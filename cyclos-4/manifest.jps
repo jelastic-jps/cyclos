@@ -1,43 +1,50 @@
 {
-  "jpsVersion": "0.9",
-  "jpsType": "install",
-  "logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
-  "description": "Cyclos 4 PRO is a payment platform for large businesses and organisations. It is secure and reliable JAVA software that can be installed on your server. Both application server as the database server are fully clusterable. It offers mobile banking (Mobile app, SMS, USSD*, and IVR*), online banking and much more.",
-  "globals": {
-    "db_user": "cyclos-${fn.random}",
-    "db_password": "${fn.password}"
-  },
-  "id": "cyclos4",
-  "name": "Cyclos4 Pro",
-  "categories": [
-    "apps/accounting",
-    "apps/popular",
-    "apps/sales-and-marketing"
-  ],
-  "homepage": "http://www.cyclos.org/",
-  "success": "Instance address: <a href='${env.url}' target='_blank'>${env.url}</a> </br></br>To add custom domain name for your Cyclos installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>",
-  "nodes": [
-    {
-      "cloudlets": 8,
-      "image": "cyclos/cyclos",
-      "nodeGroup": "cp",
-      "env": {
-        "DB_HOST": "postgres",
-        "DB_NAME": "cyclos",
-        "DB_USER": "${globals.db_user}",
-        "DB_PASSWORD": "${globals.db_password}"
-      },
-      "links": "sqldb:postgres"
-    },
-    {
-      "cloudlets": 8,
-      "image": "cyclos/db",
-      "nodeGroup": "sqldb",
-      "env": {
-        "POSTGRES_DB": "cyclos",
-        "POSTGRES_USER": "${globals.db_user}",
-        "POSTGRES_PASSWORD": "${globals.db_password}"
-      }
-    }
-  ]
+	"jpsVersion": "0.9",
+	"jpsType": "install",
+	"application": {
+		"logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
+		"description": "Cyclos 4 PRO is a payment platform for large businesses and organisations. It is secure and reliable JAVA software that can be installed on your server. Both application server as the database server are fully clusterable. It offers mobile banking (Mobile app, SMS, USSD*, and IVR*), online banking and much more.",
+		"globals": {
+			"db_user": "cyclos-${fn.random}",
+			"db_password": "${fn.password}"
+		},
+		"id": "cyclos4",
+		"name": "Cyclos4 Pro",
+		"categories": [
+			"apps/accounting",
+			"apps/popular",
+			"apps/sales-and-marketing"
+		],
+		"homepage": "http://www.cyclos.org/",
+		"success": "Instance address: <a href='${env.url}' target='_blank'>${env.url}</a> </br></br>To add custom domain name for your Cyclos installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>",
+		"env": {
+			"topology": {
+				"nodes": [{
+					"cloudlets": 8,
+					"nodeGroup": "cp",
+					"docker": {
+						"image": "cyclos/cyclos",
+						"env": {
+							"DB_HOST": "postgres",
+							"DB_NAME": "cyclos",
+							"DB_USER": "${globals.db_user}",
+							"DB_PASSWORD": "${globals.db_password}"
+						},
+						"links": "sqldb:postgres"
+					}
+				}, {
+					"cloudlets": 8,
+					"nodeGroup": "sqldb",
+					"docker": {
+						"image": "cyclos/db",
+						"env": {
+							"POSTGRES_DB": "cyclos",
+							"POSTGRES_USER": "${globals.db_user}",
+							"POSTGRES_PASSWORD": "${globals.db_password}"
+						}
+					}
+				}]
+			}
+		}
+	}
 }
