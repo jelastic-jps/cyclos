@@ -23,12 +23,12 @@
 				"nodes": [{
 						"extip": false,
 						"count": 1,
-						"cloudlets": 16,
+						"cloudlets": 8,
 						"nodeType": "tomcat6"
 					}, {
 						"extip": false,
 						"count": 1,
-						"cloudlets": 16,
+						"cloudlets": 8,
 						"nodeType": "mysql5"
 					}
 				]
