@@ -1,0 +1,94 @@
+jpsType: install
+jpsVersion: 0.8
+name: Cyclos 4 PRO cluster
+id: cyclos-cluster
+categories:
+ - apps
+type: java
+startPage: ${env.url}
+homepage: http://docs.jelastic.com
+logo: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/images/cyclos.png
+description:
+  text: Out-of-box clustered solution for Cyclos 4 PRO on-line banking system with additional modules such as e-commerce and communication tools. .
+  short: Preconfigured Cyclos 4 PRO Cluster
+success: |-
+  Multifunctional banking online system cluster with master-slave database replication and High Availability.
+  To access your system, use credentials you've registered at [Cyclos License Server](https://license.cyclos.org/app/guest/register).
+  Before accessing, please wait a minute for the required configurations to be applied.
+settings:
+    fields:
+      type: list
+      name: version
+      caption: Choose version
+      values:
+        cyclos-4.10.4: cyclos-4.10.4
+        cyclos-4.11: cyclos-4.11
+      default: cyclos-4.11      
+globals:
+  password: ${fn.password}
+env:
+  topology:
+    nodes:
+       - extip: false
+         count: 2
+         cloudlets: 8
+         nodeType: tomcat9
+         displayName: AppServer
+         scalingMode: CLONE
+         links: sqldb:DB
+       - cloudlets: 8
+         count: 2
+         nodeType: postgres9
+       - nodeType: nginx
+         count: 1
+         cloudlets: 8
+         nodeGroup: bl
+         displayName: Load balancer
+    ha: true  
+    onBeforeResetNodePassword[nodeGroup:sqldb]:
+      call:
+      - resetingNodePassword
+      - stopEvent
+onInstall:
+    - ConfigReplication
+    - ConfigDB
+    - deploy:
+        archive: https://license.cyclos.org/downloads/cyclos/${settings.version}.zip
+        name: ${settings.version}.zip
+        context: ROOT
+    - replace
+    - restartNodes:
+      - nodeGroup: cp
+actions:
+    resetingNodePassword:
+     - script:
+        script: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/scripts/resetNodePassword.js
+    log: Config replication
+    ConfigReplication:
+      - cmd[sqldb]:
+          - wget "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/scripts/execCmdScript.sh" -O /var/lib/pgsql/script.sh 2>&1
+      - cmd[${nodes.sqldb[0].id}]:
+        - bash -x /var/lib/pgsql/script.sh master ${nodes.sqldb[1].address} ${nodes.sqldb.password} ${nodes.sqldb[0].address} 1>> /var/lib/pgsql/log.log 2>>/var/lib/pgsql/log.log
+      - cmd[${nodes.sqldb[1].id}]:
+        - bash -x /var/lib/pgsql/script.sh slave ${nodes.sqldb[1].address} ${nodes.sqldb.password} ${nodes.sqldb[0].address} 1>> /var/lib/pgsql/log.log 2>>/var/lib/pgsql/log.log
+    
+    ConfigDB:
+     - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin postgres -c "create database cyclos4;"
+
+    replace:
+     - cmd[cp]: |-
+            cp -fR /opt/tomcat/webapps/ROOT/${settings.version}/web/* /opt/tomcat/webapps/ROOT/
+            cp /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos-release.properties /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties
+        
+     - replaceInFile:
+        log: ${this.message}
+        nodeType: tomcat9
+        path: "/opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties"
+        replacements:
+          - pattern: "cyclos.datasource.jdbcUrl = jdbc:postgresql://localhost/cyclos4"
+            replacement: "cyclos.datasource.jdbcUrl = jdbc:postgresql://node${nodes.postgres9[0].id}-${env.domain}/cyclos4"
+          - pattern: "cyclos.datasource.user = cyclos"
+            replacement: "cyclos.datasource.user = webadmin"
+          - pattern: "cyclos.datasource.password = cyclos"
+            replacement: "cyclos.datasource.password = ${nodes.sqldb.password}"
+
