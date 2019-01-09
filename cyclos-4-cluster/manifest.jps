@@ -5,8 +5,8 @@ id: cyclos-cluster
 categories:
  - apps/clusters
  - apps/accounting
-	- apps/popular
-	- apps/sales-and-marketing
+ - apps/popular
+ - apps/sales-and-marketing
 type: java
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
