@@ -1,9 +1,12 @@
 jpsType: install
 jpsVersion: 0.8
-name: Cyclos 4 PRO cluster
+name: Cyclos 4 PRO Cluster
 id: cyclos-cluster
 categories:
- - apps
+ - apps/clusters
+ - apps/accounting
+	- apps/popular
+	- apps/sales-and-marketing
 type: java
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
