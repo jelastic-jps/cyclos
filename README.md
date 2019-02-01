@@ -7,3 +7,4 @@ Cyclos is used by local banks, C3 networks, MFI's, barters, community currencies
 * [Сyclos 3](cyclos-3) - this package is designed to deploy Cyclos 3 environment is a feature-rich online banking solution that is easy to use and maintain, flexible, secure and highly customisable that initially contains 1 application server and 1 database container.<br />
 
 * [Сyclos 4](cyclos-4) - this package is designed to deploy Cyclos 4 environment is a feature-rich online banking solution that is easy to use and maintain, flexible, secure and highly customisable that initially contains 1 application server and 1 database container.
+* [Сyclos 4 cluster](cyclos-4-cluster) - this package is a clusterized version of Cyclos 4 environment.
