@@ -28,13 +28,13 @@ https://raw.githubusercontent.com/jelastic-jps/cyclos/master/cyclos-4-cluster/ma
 In the opened confirmation window at Jelastic dashboard choose the *Cyclos version*, type the *Environment* name, optionally, customize its [Display Name](https://docs.jelastic.com/environment-aliases). Then, select the preferable [region](https://docs.jelastic.com/environment-regions) (if several are available) and click on **Install**.
 
 <p align="left"> 
-<img src="../images/install.png" width="500">
+<img src="../images/install.png" width="710">
 </p>
 
 When the deployment is finished, you’ll see the appropriate success pop-up.
 
 <p align="left"> 
-<img src="../images/success.png" width="300">
+<img src="../images/success.png" width="430">
 </p>
 
 Now you can just click on the **Open in browser** button within the shown frame and start using your highly available and reliable Cyclos cluster.
