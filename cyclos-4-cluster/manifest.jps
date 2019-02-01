@@ -8,7 +8,7 @@ categories:
 type: java
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/cyclos/master
 logo: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/images/cyclos.png
 
 description:
