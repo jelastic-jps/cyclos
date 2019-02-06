@@ -14,7 +14,7 @@
 <img src="../images/topology.png" width="400">
 </p>
 
-More details can be found at the article [Cyclos Cluster Installation for High Availability of Online Banking Systems](https://docs.jelastic.com/cyclos-cluster).
+More details can be found at the article [Cyclos Cluster Installation for High Availability of Online Banking Systems](https://jelastic.com/blog/cyclos-cluster-automatic-installation/).
 
 ### Deployment to the Cloud
 Click the Deploy button below, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/cyclos/master/cyclos-4-cluster/manifest.jps&keys=app.jelastic.eapps.com;app.cloud.hostnet.nl;app.jelastichosting.nl;app.appengine.flow.ch;app.jelasticlw.com.br;app.mircloud.host;app.jcs.opusinteractive.io;app.paas.quarinet.eu) and press **Install**.
