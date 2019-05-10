@@ -1,74 +1,52 @@
-{
-	"jpsVersion": "0.2",
-	"jpsType": "install",
-	"application": {
-		"id": "cyclos",
-		"name": "Cyclos3 CE",
-		"version": "3.7.3",
-		"logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
-		"type": "java",
-		"homepage": "http://project.cyclos.org/",
-		"description": {
-			"en": "<p>Cyclos offers a complete on-line payment system with additional modules such as e-commerce and communication tools. The Cyclos platform permits institutions such as local banks and MFI`s to offer banking services that can stimulate local trade and development. Cyclos is also used by many organizations and communities to provide community currency services.</p>"
-		},
-		"success": {
-			"text": "Below you will find your admin panel link, username and password.<\/br><\/br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:<\/td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/' target='_blank'>${env.protocol}://${env.domain}/<\/a><\/td><\/tr> <tr><td>Username:<\/td><td style='padding-left: 10px;'>admin<\/td><\/tr><tr><td>Password:<\/td><td style='padding-left: 10px;'>1234<\/td><\/tr><\/table><\/br>To add custom domain name for your Cyclos installation follow the steps described in our <a href='http://jelastic.com/docs/custom-domains' target='_blank'>documentation<\/a>"
-		},
-		"categories": ["apps/e-commerce", "apps/sales-and-marketing"],
-		"env": {
-			"topology": {
-				"ha": false,
-				"engine": "java8",
-				"ssl": false,
-				"nodes": [{
-						"extip": false,
-						"count": 1,
-						"cloudlets": 8,
-						"nodeType": "tomcat6"
-					}, {
-						"extip": false,
-						"count": 1,
-						"cloudlets": 8,
-						"nodeType": "mysql5"
-					}
-				]
-			},
-			"deployments": [{
-					"archive": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-3/dumps/cyclos-3.7.3.war",
-					"name": "cyclos-3.7.3.war",
-					"context": "ROOT"
-				}
-			],
-			"configs": [{
-					"nodeType": "mysql5",
-					"database": {
-						"name": "cyclos3",
-						"user": "cyclos",
-						"dump": "https://github.com/jelastic-jps/cyclos/raw/master/cyclos-3/dumps/cyclos.sql"
-					}
-				}, {
-					"nodeType": "tomcat6",
-					"restart": true,
-					"path": "${WEBAPPS}/ROOT/WEB-INF/classes/cyclos.properties",
-					"replacements": [{
-							"pattern": "{ENV_URL}",
-							"replacement": "${env.url}"
-						}, {
-							"pattern": "{DB_HOST}",
-							"replacement": "${nodes.mysql5.address}"
-						}, {
-							"pattern": "{DB_USER}",
-							"replacement": "${nodes.mysql5.database.user}"
-						}, {
-							"pattern": "{DB_PASSWORD}",
-							"replacement": "${nodes.mysql5.database.password}"
-						}, {
-							"pattern": "{DB_NAME}",
-							"replacement": "${nodes.mysql5.database.name}"
-						}
-					]
-				}
-			]
-		}
-	}
-}
+jpsVersion: '0.2'
+type: install
+id: cyclos
+name: Cyclos3 CE
+version: 3.7.3
+logo: https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png
+homepage: http://project.cyclos.org/
+description: "<p>Cyclos offers a complete on-line payment system with additional modules
+  such as e-commerce and communication tools. The Cyclos platform permits institutions
+  such as local banks and MFI`s to offer banking services that can stimulate local
+  trade and development. Cyclos is also used by many organizations and communities
+  to provide community currency services.</p>"
+success: 'Below you will find your admin panel link, username and password.</br></br> <table style="font-size:13px; border: none;"><tr><td>Admin panel URL:</td><td style="padding-left: 10px;"><a href="${env.protocol}://${env.domain}/" target="_blank">${env.protocol}://${env.domain}/</a></td></tr> <tr><td>Username:</td><td style="padding-left: 10px;">admin</td></tr><tr><td>Password:</td><td style="padding-left: 10px;">1234</td></tr></table></br>To add custom domain name for your Cyclos installation follow the steps described in our <a href="http://jelastic.com/docs/custom-domains" target="_blank">documentation</a>'
+categories:
+- apps/e-commerce
+- apps/sales-and-marketing
+globals:
+  ADMIN_DB_PASS: "${fn.password}"
+nodes:
+- cloudlets: 8
+  nodeGroup: cp
+  image: jelastic/tomcat:7.0.94-jdk-1.6.0_45
+  2image: jelastic/tomcat:6.0.45-jdk-1.6.0_45
+- cloudlets: 8
+  nodeType: mysql5
+onInstall:
+- deploy:
+    archive: https://github.com/jelastic-jps/cyclos/blob/master/cyclos-3/dumps/cyclos-3.7.3.war?raw=true
+    name: cyclos-3.7.3.war
+    context: ROOT
+- prepareSqlDatabase:
+    nodeGroup: sqldb
+    loginCredentials:
+      user: root
+      password: "${nodes.sqldb.password}"
+    newDatabaseName: cyclos3
+    newDatabaseUser:
+      name: cyclos
+      password: "${globals.ADMIN_DB_PASS}"
+- cmd [cp]:
+  - CONFIG_FILE=/opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties
+  - sed -i s/{ENV_URL}/${env.url}/g ${CONFIG_FILE}
+  - sed -i s/{DB_HOST}/${nodes.mysql5.address}/g ${CONFIG_FILE}
+  - sed -i s/{DB_USER}/cyclos/g ${CONFIG_FILE}
+  - sed -i s/{DB_PASSWORD}/${globals.ADMIN_DB_PASS}/g ${CONFIG_FILE}
+  - sed -i s/{DB_NAME}/cyclos3/g ${CONFIG_FILE}
+  - mem=$(( $(cat /proc/meminfo | grep MemTotal | awk '{print $2}')/1000-200 ))
+  - |-
+    echo '-XX:MaxPermSize='$mem'm
+    ' >> /opt/tomcat/conf/variables.conf
+  - echo ' ' >> /opt/tomcat/conf/variables.conf
+- restartNodes [cp]
