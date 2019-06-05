@@ -1,7 +1,7 @@
 jpsVersion: '0.2'
 type: install
 id: cyclos
-name: Cyclos3 CE
+name: Cyclos 3 CE
 version: 3.7.3
 logo: https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png
 homepage: http://project.cyclos.org/
