@@ -1,6 +1,6 @@
 jpsType: install
 jpsVersion: '1.4.2'
-name: Cyclos 4 PRO cluster
+name: Cyclos 4 PRO Cluster
 id: cyclos-cluster
 categories:
  - apps/clusters
