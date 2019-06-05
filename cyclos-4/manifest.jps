@@ -6,7 +6,7 @@ globals:
   db_user: cyclos-${fn.random}
   db_password: ${fn.password}
 id: cyclos4
-name: Cyclos4 Pro
+name: Cyclos 4 PRO
 categories:
   - apps/e-commerce
   - apps/sales-and-marketing
