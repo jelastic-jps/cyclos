@@ -22,7 +22,8 @@ settings:
       values:
         cyclos-4.10.4: cyclos-4.10.4
         cyclos-4.11: cyclos-4.11
-      default: cyclos-4.11      
+        cyclos-4.12.4: cyclos-4.12.4
+      default: cyclos-4.12.4      
 
 globals:
   password: "${fn.password}"
@@ -79,7 +80,7 @@ actions:
     
     ConfigDB:
      - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin postgres -c "create database cyclos4;"
-     - cmd[${nodes.sqldb[0].id}]: wget https://raw.githubusercontent.com/jelastic-jps/cyclos/master/cyclos-4-cluster/dumps/${settings.version}.bak -O cyclos4.bak 2>&1
+     - cmd[${nodes.sqldb[0].id}]: wget ${baseUrl}/cyclos-4-cluster/dumps/${settings.version}.bak -O cyclos4.bak 2>&1
      - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin cyclos4 < cyclos4.bak 2>&1
 
     replace:
