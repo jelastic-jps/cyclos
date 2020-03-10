@@ -34,8 +34,8 @@ env:
        - extip: false
          count: 2
          cloudlets: 24
-         nodeType: tomcat
-         tag: 9.0.12-jdk-11.0.1
+         nodeType: tomcat9
+         engine: openjdk8
          displayName: AppServer
          scalingMode: CLONE
          links: sqldb:DB
