@@ -90,7 +90,7 @@ actions:
         
      - replaceInFile:
         log: ${this.message}
-        nodeType: tomcat
+        nodeType: tomcat9
         path: "/opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties"
         replacements:
           - pattern: "cyclos.datasource.jdbcUrl = jdbc:postgresql://localhost/cyclos4"
@@ -101,7 +101,7 @@ actions:
             replacement: "cyclos.datasource.password = ${nodes.sqldb.password}"
      - replaceInFile:
         log: ${this.message}
-        nodeType: tomcat
+        nodeType: tomcat9
         path: "/opt/tomcat/conf/context.xml"
         replacements:
           - pattern: "</Context>"
