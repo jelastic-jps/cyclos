@@ -40,7 +40,6 @@ env:
          scalingMode: CLONE
          links: sqldb:DB
        - cloudlets: 8
-         count: 2
          nodeType: postgresql
          cluster: true
        - nodeType: nginx
@@ -48,10 +47,6 @@ env:
          nodeGroup: bl
          displayName: Load balancer
     ha: true  
-    onBeforeResetNodePassword[nodeGroup:sqldb]:
-      call:
-      - resetingNodePassword
-      - stopEvent
 
 onInstall:
     - ConfigDB
