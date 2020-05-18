@@ -42,7 +42,6 @@ env:
        - cloudlets: 8
          count: 2
          nodeType: postgresql
-         tag: 9.6.11
        - nodeType: nginx
          count: 1
          cloudlets: 8
