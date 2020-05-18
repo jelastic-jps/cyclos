@@ -42,8 +42,8 @@ env:
        - cloudlets: 8
          count: 2
          nodeType: postgresql
+         cluster: true
        - nodeType: nginx
-         count: 1
          cloudlets: 8
          nodeGroup: bl
          displayName: Load balancer
@@ -54,7 +54,6 @@ env:
       - stopEvent
 
 onInstall:
-    - ConfigReplication
     - ConfigDB
     - deploy:
         archive: https://license.cyclos.org/downloads/cyclos/${settings.version}.zip
@@ -65,17 +64,6 @@ onInstall:
       - nodeGroup: cp
 
 actions:
-    resetingNodePassword:
-     - script:
-        script: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/scripts/resetNodePassword.js
-    log: Config replication
-    ConfigReplication:
-      - cmd[sqldb]:
-          - wget "https://raw.githubusercontent.com/jelastic-jps/cyclos/master/scripts/execCmdScript.sh" -O /var/lib/pgsql/script.sh 2>&1
-      - cmd[${nodes.sqldb[0].id}]:
-        - bash -x /var/lib/pgsql/script.sh master ${nodes.sqldb[1].address} ${nodes.sqldb.password} ${nodes.sqldb[0].address} 1>> /var/lib/pgsql/log.log 2>>/var/lib/pgsql/log.log
-      - cmd[${nodes.sqldb[1].id}]:
-        - bash -x /var/lib/pgsql/script.sh slave ${nodes.sqldb[1].address} ${nodes.sqldb.password} ${nodes.sqldb[0].address} 1>> /var/lib/pgsql/log.log 2>>/var/lib/pgsql/log.log
     
     ConfigDB:
      - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin postgres -c "create database cyclos4;"
