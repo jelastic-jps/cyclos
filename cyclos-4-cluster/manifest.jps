@@ -62,9 +62,9 @@ onInstall:
 actions:
     
     ConfigDB:
-     - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin postgres -c "create database cyclos4;"
-     - cmd[${nodes.sqldb[0].id}]: wget ${baseUrl}/cyclos-4-cluster/dumps/${settings.version}.bak -O cyclos4.bak 2>&1
-     - cmd[${nodes.sqldb[0].id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin cyclos4 < cyclos4.bak 2>&1
+     - cmd[${nodes.sqldb.master.id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin postgres -c "create database cyclos4;"
+     - cmd[${nodes.sqldb.master.id}]: wget ${baseUrl}/cyclos-4-cluster/dumps/${settings.version}.bak -O cyclos4.bak 2>&1
+     - cmd[${nodes.sqldb.master.id}]: PGPASSWORD=${nodes.sqldb.password} psql -Uwebadmin cyclos4 < cyclos4.bak 2>&1
 
     replace:
      - cmd[cp]: |-
@@ -77,7 +77,7 @@ actions:
         path: "/opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties"
         replacements:
           - pattern: "cyclos.datasource.jdbcUrl = jdbc:postgresql://localhost/cyclos4"
-            replacement: "cyclos.datasource.jdbcUrl = jdbc:postgresql://node${nodes.postgresql[0].id}-${env.domain}/cyclos4"
+            replacement: "cyclos.datasource.jdbcUrl = jdbc:postgresql://node${nodes.sqldb.master.id}-${env.domain}/cyclos4"
           - pattern: "cyclos.datasource.user = cyclos"
             replacement: "cyclos.datasource.user = webadmin"
           - pattern: "cyclos.datasource.password = cyclos"
