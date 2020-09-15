@@ -1,8 +1,8 @@
 tags:
   cyclos:
     cyclos:
-      digest: sha256:4e2c40aa70f7e03b57f55182e3bfaa3a42a47f263e526a76062f3a1852fa638c
-      version: 4.13.1
+      digest: sha256:87eb6f056526f77d9b9788069c48c8a0e00dedc320da1d65f2e1f424ff6a2d8d
+      version: 4.13.2
   cyclos-db:
     cyclos-db:
       digest: sha256:dbc028c10058429d61f2159b02f242bc90e1cced829510b22f90c86e3c365f24
