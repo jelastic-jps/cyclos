@@ -1,0 +1,12 @@
+jps: https://github.com/jelastic-jps/cyclos/blob/master/cyclos-4-cluster/manifest.jps
+component: cyclos
+subfolders:
+  - cyclos-4
+  - cyclos-4-cluster
+stack:
+  - nodeType: tomcat
+    tagSetting: cp_tag
+  - nodeType: postgresql
+    tagSetting: sqldb_tag
+  - nodeType: nginx-dockerized
+    tagSetting: bl_tag
