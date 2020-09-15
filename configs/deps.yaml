@@ -1,5 +1,35 @@
 tags:
   cyclos:
+    cyclos:
+      digest: sha256:4e2c40aa70f7e03b57f55182e3bfaa3a42a47f263e526a76062f3a1852fa638c
+      version: 4.13.1
   cyclos-db:
+    cyclos-db:
+      digest: sha256:dbc028c10058429d61f2159b02f242bc90e1cced829510b22f90c86e3c365f24
+      version: latest
   postgres:
+    postgres9:
+      digest: sha256:031fe59554bfd533dc0555d6ebfb87df61d8385be363a2f0ef917da34087deff
+      version: 9.6.19
+    postgres10:
+      digest: sha256:cf84cbced03f8dcf9cde3aa291cb5979febdb21268677c262f9c7be24ee995cd
+      version: "10.14"
+    postgres11:
+      digest: sha256:dfadf9056b976de1bf57e03a2a468e0ba2e6089ce64a2392e92ec7d4972aba58
+      version: "11.9"
+    postgres12:
+      digest: sha256:0bec0cdc65ceb8ab2936f78980f373c7f318497c04bd68c68d730866477d5c5c
+      version: "12.4"
   tomcat:
+    tomcat7:
+      digest: sha256:168139f0eccb36ebc4452ff2641f67146b1bbdbee8fd4db70e18732b8dbe9e14
+      version: 7.0.105-zulujdk-8.0.262
+    tomcat8:
+      digest: sha256:9f578578201f931daa37202a0911425550e335aca1a1d4e6b034171485ae000e
+      version: 8.5.57-zulujdk-8.0.262
+    tomcat9:
+      digest: sha256:53b17d573d386faca6fac41fa73b637338e97287e114f55698ea601f986f74ad
+      version: 9.0.37-zulujdk-8.0.262
+    tomcat10:
+      digest: sha256:5ccab61886f2c4b3678077c10e7ea4206283806fcea8e7f3ffe482d01da2ecfd
+      version: 10.0.0-M8-zulujdk-8.0.262
