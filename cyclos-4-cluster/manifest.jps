@@ -4,6 +4,8 @@ name: Cyclos 4 PRO Cluster
 id: cyclos-cluster
 categories:
  - apps/clusters
+mixins:
+  - configs/vers.yaml
 type: java
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
@@ -23,7 +25,8 @@ settings:
         cyclos-4.10.4: cyclos-4.10.4
         cyclos-4.11: cyclos-4.11
         cyclos-4.12.4: cyclos-4.12.4
-      default: cyclos-4.12.4      
+        cyclos-${globals.version_cyclos}: cyclos-${globals.version_cyclos}
+      default: cyclos-${globals.version_cyclos}
 
 globals:
   password: "${fn.password}"
