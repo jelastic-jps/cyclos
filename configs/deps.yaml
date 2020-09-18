@@ -22,14 +22,14 @@ tags:
       version: "12.4"
   tomcat:
     tomcat7:
-      digest: sha256:168139f0eccb36ebc4452ff2641f67146b1bbdbee8fd4db70e18732b8dbe9e14
-      version: 7.0.105-zulujdk-8.0.262
+      digest: sha256:cc5e9e6e07836acdbce5b07c688c6cb11acb76c216474b0af65950a257eaf243
+      version: 7.0.105-zulujdk-8.0.265
     tomcat8:
-      digest: sha256:9f578578201f931daa37202a0911425550e335aca1a1d4e6b034171485ae000e
-      version: 8.5.57-zulujdk-8.0.262
+      digest: sha256:b055027cef63b8f24faf60163bcb73984897925c531f083fadac8fd1272f14db
+      version: 8.5.57-zulujdk-8.0.265
     tomcat9:
-      digest: sha256:53b17d573d386faca6fac41fa73b637338e97287e114f55698ea601f986f74ad
-      version: 9.0.37-zulujdk-8.0.262
+      digest: sha256:0f896c3c2e8a3ff08c58db960427af6d268b2a0677c456f884bfc6a11bc98d53
+      version: 9.0.37-zulujdk-8.0.265
     tomcat10:
-      digest: sha256:5ccab61886f2c4b3678077c10e7ea4206283806fcea8e7f3ffe482d01da2ecfd
-      version: 10.0.0-M8-zulujdk-8.0.262
+      digest: sha256:d13b78afa57f07618aa1dd7988c258901355d7149dd0cc189515f6e1e9f42c24
+      version: 10.0.0-M8-zulujdk-8.0.265
