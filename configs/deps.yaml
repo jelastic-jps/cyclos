@@ -28,8 +28,8 @@ tags:
       digest: sha256:16818b336d08298457dd33860f5eb130c3c5be97e48b1f804bd5b0edef0ad590
       version: 8.5.57-zulujdk-14.0.2
     tomcat9:
-      digest: sha256:dfc166674e5aad48897d45e923c340d3d7710f0480b2f0ab0fc1d9cea5022bd6
-      version: 9.0.37-zulujdk-14.0.2
+      digest: sha256:2009bd4f627636d7d084f366d049278011f28b47291af6de6993b309210a3106
+      version: 9.0.37-zulujdk-15.0.0
     tomcat10:
-      digest: sha256:094125c8c06bca2d15afb4f62dbb99fd8cc6cf424e0a31fc249103fe66bd9fd1
-      version: 10.0.0-M8-zulujdk-14.0.2
+      digest: sha256:d3b44edcc5bc0b44205bd63dffdf03f0022720573120e40ea2580876bdf2eaa1
+      version: 10.0.0-M8-zulujdk-15.0.0
