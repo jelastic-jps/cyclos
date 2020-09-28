@@ -9,17 +9,20 @@ tags:
       version: latest
   postgres:
     postgres9:
-      digest: sha256:031fe59554bfd533dc0555d6ebfb87df61d8385be363a2f0ef917da34087deff
+      digest: sha256:95d75eb4496070ab5b142ffd944d09d78bcade7537ba300b5298ec19f8c83718
       version: 9.6.19
     postgres10:
-      digest: sha256:cf84cbced03f8dcf9cde3aa291cb5979febdb21268677c262f9c7be24ee995cd
+      digest: sha256:aa359c43fe8958f690597c17a183593a9629e5e692f11780287aca8e4f613f03
       version: "10.14"
     postgres11:
-      digest: sha256:dfadf9056b976de1bf57e03a2a468e0ba2e6089ce64a2392e92ec7d4972aba58
+      digest: sha256:443fbb6258fb821adf6e01c3bdfb265e445fee47c70bdc102d8709760bb9ae8f
       version: "11.9"
     postgres12:
-      digest: sha256:0bec0cdc65ceb8ab2936f78980f373c7f318497c04bd68c68d730866477d5c5c
+      digest: sha256:ad59805d96e3667d366b943c30e1ce6a7f8758f0071b9d63ab9af790b33709a2
       version: "12.4"
+    postgres13:
+      digest: sha256:c5f1a1554212bf0b19b7b5ec20ad22cdf76fedcddc2dc1a42af984f2e82a5ece
+      version: "13.0"
   tomcat:
     tomcat7:
       digest: sha256:cc5e9e6e07836acdbce5b07c688c6cb11acb76c216474b0af65950a257eaf243
