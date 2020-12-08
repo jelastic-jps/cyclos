@@ -6,7 +6,6 @@ categories:
  - apps/clusters
 mixins:
  - configs/vers.yaml
-type: java
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/
