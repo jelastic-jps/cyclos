@@ -30,7 +30,7 @@ onBeforeInit: |
   var version = "cyclos-" + jps.globals.version_cyclos; 
   jps.settings.fields.values[version] = version;
   jps.settings.fields["default"] = version;
-  return jps;
+  return {result: 0, settings: jps.settings};
 
 globals:
   password: "${fn.password}"
