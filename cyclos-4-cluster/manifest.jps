@@ -1,14 +1,15 @@
-jpsType: install
-jpsVersion: '1.5'
+type: install
+version: 1.7
 name: Cyclos 4 PRO Cluster
 id: cyclos-cluster
 categories:
  - apps/clusters
-type: java
+mixins:
+ - configs/vers.yaml
 startPage: ${env.url}
 homepage: http://docs.jelastic.com
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/cyclos/master
-logo: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/images/cyclos.png
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/cyclos/master/
+logo: images/cyclos.png
 
 description:
   text: /cyclos-4-cluster/texts/description.md
@@ -23,7 +24,13 @@ settings:
         cyclos-4.10.4: cyclos-4.10.4
         cyclos-4.11: cyclos-4.11
         cyclos-4.12.4: cyclos-4.12.4
-      default: cyclos-4.12.4      
+      default: cyclos-4.12.4
+
+onBeforeInit: |
+  var version = "cyclos-" + jps.globals.version_cyclos; 
+  jps.settings.fields.values[version] = version;
+  jps.settings.fields.default = version;
+  return jps;
 
 globals:
   password: "${fn.password}"
@@ -68,7 +75,7 @@ actions:
      - cmd[cp]: |-
             cp -fR /opt/tomcat/webapps/ROOT/${settings.version}/web/* /opt/tomcat/webapps/ROOT/
             cp /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos-release.properties /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties
-        
+
      - replaceInFile:
         log: ${this.message}
         nodeType: tomcat9
@@ -89,6 +96,6 @@ actions:
             replacement: '<Loader delegate="true"/>\n
 
                  </Context>'
-          
+
 success:
   text: /cyclos-4-cluster/texts/success.md
