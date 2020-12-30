@@ -29,7 +29,7 @@ settings:
 onBeforeInit: |
   var version = "cyclos-" + jps.globals.version_cyclos; 
   jps.settings.fields.values[version] = version;
-  jps.settings.fields.default = version;
+  jps.settings.fields["default"] = version;
   return jps;
 
 globals:
