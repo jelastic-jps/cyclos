@@ -32,8 +32,17 @@ onBeforeInit: |
   jps.settings.fields["default"] = version;
   return {result: 0, settings: jps.settings};
 
+onBeforeInstall: |
+  var version = '${settings.version}'.replace('${globals.cyclos_prefix}', '').replace(/\./g, 0);
+  if (version && version > ${globals.cyclos_jdk11_required}) jps.globals.engine = '${globals.engine11}';
+  return {result: 0}
+
 globals:
   password: "${fn.password}"
+  engine: openjdk8
+  engine11: openjdk11
+  cyclos_prefix: "cyclos-"
+  cyclos_jdk11_required: "401400" 
 
 env:
   topology:
@@ -42,7 +51,7 @@ env:
          count: 2
          cloudlets: 24
          nodeType: tomcat9
-         engine: openjdk8
+         engine: ${globals.engine}
          displayName: AppServer
          scalingMode: CLONE
          links: sqldb:DB
