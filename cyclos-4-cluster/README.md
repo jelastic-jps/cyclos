@@ -8,7 +8,7 @@
 
 - **NGINX** load balancer
 - Scalable **Tomcat** application servers with preconfigured [automatic horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) to handle load spikes
-- **PostgreSQL** database cluster with master-slave replication to ensure high performance, fault tolerance and data security
+- **PostgreSQL** database cluster with primary-secondary (previously known as master-slave) replication to ensure high performance, fault tolerance and data security
 
 <p align="left"> 
 <img src="../images/topology.png" width="400">
