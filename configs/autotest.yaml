@@ -6,7 +6,10 @@ subfolders:
 stack:
   - nodeType: tomcat
     tagSetting: cp_tag
+    nodeGroup: cp
   - nodeType: postgresql
     tagSetting: sqldb_tag
+    nodeGroup: sqldb
   - nodeType: nginx-dockerized
     tagSetting: bl_tag
+    nodeGroup: bl
