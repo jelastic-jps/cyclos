@@ -49,7 +49,7 @@ env:
     nodes:
        - extip: false
          count: 2
-         cloudlets: 24
+         cloudlets: 32
          nodeType: tomcat9
          engine: ${globals.engine}
          displayName: AppServer
