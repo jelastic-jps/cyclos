@@ -24,6 +24,7 @@ env:
           DB_NAME: cyclos
           DB_USER: ${globals.db_user}
           DB_PASSWORD: ${globals.db_password}
+          JAVA_OPTS: -Dcyclos.db.skipLock=true
         links: sqldb:postgres
     - cloudlets: 8
       nodeGroup: sqldb
