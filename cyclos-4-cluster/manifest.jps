@@ -82,8 +82,10 @@ actions:
 
     replace:
      - cmd[cp]: |-
+            CYCLOS_PROP="/opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties"
             cp -fR /opt/tomcat/webapps/ROOT/${settings.version}/web/* /opt/tomcat/webapps/ROOT/
-            cp /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos-release.properties /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos.properties
+            cp /opt/tomcat/webapps/ROOT/WEB-INF/classes/cyclos-release.properties ${CYCLOS_PROP}
+            echo "" >> ${CYCLOS_PROP} && echo 'cyclos.db.skipLock=true' >> ${CYCLOS_PROP}
 
      - replaceInFile:
         log: ${this.message}
