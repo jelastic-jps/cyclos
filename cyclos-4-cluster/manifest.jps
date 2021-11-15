@@ -97,7 +97,13 @@ actions:
           - pattern: "cyclos.datasource.user = cyclos"
             replacement: "cyclos.datasource.user = webadmin"
           - pattern: "cyclos.datasource.password = cyclos"
-            replacement: "cyclos.datasource.password = ${nodes.sqldb.password}"
+            replacement: "cyclos.datasource.password = ${nodes.sqldb.password}"  
+          - pattern: ".*cyclos.cors.origin.*"
+            replacement: "cyclos.cors.origin = *"  
+          - pattern: ".*cyclos.header.remoteAddress.*"
+            replacement: "cyclos.header.remoteAddress=X-Forwarded-For"
+          - pattern: ".*cyclos.header.protocol.*"
+            replacement: "cyclos.header.protocol=X-Forwarded-Proto"
      - replaceInFile:
         log: ${this.message}
         nodeType: tomcat9
