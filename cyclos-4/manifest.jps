@@ -11,7 +11,7 @@ categories:
   - apps/e-commerce
   - apps/sales-and-marketing
 homepage: http://www.cyclos.org/
-success: 'Instance address: <a href=''${env.url}'' target=''_blank''>${env.url}</a> </br></br>To add custom domain name for your Cyclos installation follow the steps described in our <a href=''http://docs.jelastic.com/custom-domains'' target=''_blank''>documentation</a>'
+
 env:
   topology:
     nodes:
@@ -29,8 +29,12 @@ env:
     - cloudlets: 8
       nodeGroup: sqldb
       docker:
-        image: cyclos/db
+        image: postgis/postgis
         env:
           POSTGRES_DB: cyclos
           POSTGRES_USER: ${globals.db_user}
           POSTGRES_PASSWORD: ${globals.db_password}
+          
+success: |
+  Instance address: [${env.url}](${env.url})  
+  To add custom domain name for your Cyclos installation follow the steps described in our [documentation](http://docs.jelastic.com/custom-domains)
