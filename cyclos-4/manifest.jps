@@ -12,29 +12,25 @@ categories:
   - apps/sales-and-marketing
 homepage: http://www.cyclos.org/
 
-env:
-  topology:
-    nodes:
-    - cloudlets: 8
-      nodeGroup: cp
-      docker:
-        image: cyclos/cyclos
-        env:
-          DB_HOST: postgres
-          DB_NAME: cyclos
-          DB_USER: ${globals.db_user}
-          DB_PASSWORD: ${globals.db_password}
-          JAVA_OPTS: -Dcyclos.db.skipLock=true
-        links: sqldb:postgres
-    - cloudlets: 8
-      nodeGroup: sqldb
-      docker:
-        image: postgis/postgis
-        env:
-          POSTGRES_DB: cyclos
-          POSTGRES_USER: ${globals.db_user}
-          POSTGRES_PASSWORD: ${globals.db_password}
-          
+nodes:
+  - cloudlets: 16
+    nodeGroup: cp
+    image: cyclos/cyclos
+    env:
+      DB_HOST: postgres
+      DB_NAME: cyclos
+      DB_USER: ${globals.db_user}
+      DB_PASSWORD: ${globals.db_password}
+      JAVA_OPTS: -Dcyclos.db.skipLock=true
+    links: sqldb:postgres
+  - cloudlets: 8
+    nodeGroup: sqldb
+    image: postgis/postgis
+    env:
+      POSTGRES_DB: cyclos
+      POSTGRES_USER: ${globals.db_user}
+      POSTGRES_PASSWORD: ${globals.db_password}
+
 success: |
   Instance address: [${env.url}](${env.url})  
   To add custom domain name for your Cyclos installation follow the steps described in our [documentation](http://docs.jelastic.com/custom-domains)
