@@ -21,7 +21,7 @@ nodes:
       DB_NAME: cyclos
       DB_USER: ${globals.db_user}
       DB_PASSWORD: ${globals.db_password}
-      JAVA_OPTS: -Dcyclos.db.skipLock=true
+      JAVA_OPTS: -Dcyclos.db.skipLock=true -Xms128m -Xmx1536m
     links: sqldb:postgres
   - cloudlets: 8
     nodeGroup: sqldb
