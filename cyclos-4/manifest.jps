@@ -23,6 +23,7 @@ nodes:
       DB_PASSWORD: ${globals.db_password}
       JAVA_OPTS: -Dcyclos.db.skipLock=true
     links: sqldb:postgres
+    startServiceOnCreation: false
   - cloudlets: 8
     nodeGroup: sqldb
     image: postgis/postgis
@@ -30,6 +31,10 @@ nodes:
       POSTGRES_DB: cyclos
       POSTGRES_USER: ${globals.db_user}
       POSTGRES_PASSWORD: ${globals.db_password}
+
+onInstall:
+  - api: env.control.ExecDockerRunCmd
+    nodeId: ${nodes.cp.first.id}
 
 success: |
   Instance address: [${env.url}](${env.url})  
