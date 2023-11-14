@@ -32,6 +32,21 @@ nodes:
       POSTGRES_USER: ${globals.db_user}
       POSTGRES_PASSWORD: ${globals.db_password}
 
+onAfterBindSSL:
+  if (nodes.bl):
+    - cmd [cp]: |-
+        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = X-Forwarded-For|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = https|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+    - restartContainer[cp]
+      
+
+onAfterRemoveSSL:
+  if (nodes.bl):
+    - cmd [cp]: |-
+        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = |g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = http|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+    - restartContainer[cp]
+
 onInstall:
   - api: env.control.ExecDockerRunCmd
     nodeId: ${nodes.cp.first.id}
