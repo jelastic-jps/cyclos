@@ -34,22 +34,40 @@ nodes:
 
 onAfterBindSSL:
   if (nodes.bl):
-    - cmd [cp]: |-
-        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = X-Forwarded-For|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
-        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = https|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
-    - restartContainer[cp]
-      
+    - setSSL:
+        ssl: true
 
 onAfterRemoveSSL:
   if (nodes.bl):
-    - cmd [cp]: |-
-        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = |g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
-        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = http|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
-    - restartContainer[cp]
+    - setSSL:
+        ssl: false
+        
+onAfterChangeTopology:
+  - if (${event.response.response.env.sslstate}):
+      setSSL:
+        ssl: true
+  - else:
+      setSSL:
+        ssl: false
 
 onInstall:
   - api: env.control.ExecDockerRunCmd
     nodeId: ${nodes.cp.first.id}
+
+actions:
+  setSSL:
+    - if (${this.ssl} == true):
+        setGlobals:
+          headerRemoteAddress: X-Forwarded-For
+          headerProtocol: https
+    - else:
+        setGlobals:
+          headerRemoteAddress: ''
+          headerProtocol: http
+    - cmd [cp]: |-
+        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = ${globals.headerRemoteAddress}|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = ${globals.headerProtocol}|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+    - restartContainer[cp]
 
 success: |
   Instance address: [${env.url}](${env.url})  
