@@ -65,8 +65,9 @@ actions:
           headerRemoteAddress: ''
           headerProtocol: http
     - cmd [cp]: |-
-        sed -i "s|cyclos.header.remoteAddress.*|cyclos.header.remoteAddress = ${globals.headerRemoteAddress}|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
-        sed -i "s|cyclos.header.protocol.*|cyclos.header.protocol = ${globals.headerProtocol}|g" /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+        wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
+        /usr/bin/yq eval -i '.cyclos.header.remoteAddress = "${globals.headerRemoteAddress}"' /usr/local/cyclos/WEB-INF/classes/cyclos.properties
+        /usr/bin/yq eval -i '.cyclos.header.protocol = "${globals.headerProtocol}"' /usr/local/cyclos/WEB-INF/classes/cyclos.properties
     - restartContainer[cp]
 
 success: |
