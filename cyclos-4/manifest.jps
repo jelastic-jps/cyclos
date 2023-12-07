@@ -1,6 +1,6 @@
 jpsVersion: 0.9
 jpsType: install
-logo: https://github.com/jelastic-jps/cyclos/raw/JE-59734/images/cyclos.png
+logo: https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png
 description: Cyclos 4 PRO is a payment platform for large businesses and organisations. It is secure and reliable JAVA software that can be installed on your server. Both application server as the database server are fully clusterable. It offers mobile banking (Mobile app, SMS, USSD*, and IVR*), online banking and much more.
 globals:
   db_user: cyclos-${fn.random}
