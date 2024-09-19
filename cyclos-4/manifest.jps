@@ -15,7 +15,7 @@ homepage: http://www.cyclos.org/
 nodes:
   - cloudlets: 16
     nodeGroup: cp
-    image: cyclos/cyclos:4.16.11
+    image: cyclos/cyclos:4.16.11-20240703
     env:
       DB_HOST: postgres
       DB_NAME: cyclos
